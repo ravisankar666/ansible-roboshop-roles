@@ -1,0 +1,9 @@
+MONGODB_HOST: mongodb.daws86.fun
+REDIS_HOST: redis.daws86.fun
+CATALOGUE_HOST: catalogue.daws86.fun
+CART_HOST: cart.daws86.fun
+USER_HOST: user.daws86.fun
+RABBITMQ_HOST: rabbitmq.daws86.fun
+MYSQL_HOST: mysql.daws86.fun
+SHIPPING_HOST: shipping.daws86.fun
+PAYMENT_HOST: payment.daws86.fun
