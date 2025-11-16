@@ -6,7 +6,7 @@
    sg_id:   "sg-00c2d6548a23412ff" # replace security group id
    zone_id: "Z0043313JVXOCUVVVC7F"  # replace with hosted_zone id
    domain_name: "daws86.fun"
-   instances:
+  #  instances:
    # we can pass instances through command line using -e
    #  - mongodb
 
