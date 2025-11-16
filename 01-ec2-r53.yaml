@@ -11,48 +11,46 @@
    #  - mongodb
 
 
-  tasks:
-  - name: create ec2 instance
-    amazon.aws.ec2_instance:
+   tasks:
+   - name: create ec2 instance
+     amazon.aws.ec2_instance:
       name: "{{ item }}"
       instance_type: t3.micro
       security_group: "{{ sg_id }}"
       image_id: "{{ ami_id }}"
       tags:
         Name: "{{ item }}"
-    loop: "{{ instances }}"
-    register: ec2_output  # register key word take output.
+     loop: "{{ instances }}"
+     register: ec2_output
 
-
-  # - name:  print the ec2_output
+  # - name: print the ec2_output
   #   ansible.builtin.debug:
-  #     msg: "{{ ec2_output }}" 
+  #     msg: "{{ ec2_output }}"
 
-  # - name: print public_ip  
+  # - name: print public_ip
   #   ansible.builtin.debug: 
-  #    msg: "{{ item.instances[0].public_ip_address }}"
+  #     msg: "{{ item.instances[0].public_ip_address }}"
   #   loop: "{{ ec2_output.results }}"
 
   # - name: print private_ip
   #   ansible.builtin.debug: 
-  #    msg: "{{ item.instances[0].private_ip_address }}"
+  #     msg: "{{ item.instances[0].private_ip_address }}"
   #   loop: "{{ ec2_output.results }}"
-  
 
-  - name: create route53 record
-    amazon.aws.route53:
-     state: present
-     zone: "{{ domain_name }}"
-     record: "{{ item.item }}.{{ domain_name }}" #mongodb.daws86.fun
-     type: A 
-     ttl : 1
-     value: "{{ item.instances[0].private_ip_address }}"
-     overwrite: true
-    loop: "{{ ec2_output.results }}"
+   - name: create route53 record
+     amazon.aws.route53:
+      state: present
+      zone: "{{ domain_name }}"
+      record: "{{ item.item }}.{{ domain_name }}" # mongodb.daws86s.fun
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].private_ip_address }}"
+      overwrite: true
+     loop: "{{ ec2_output.results }}"
 
   # we are creating one record with public only for frontend
-  - name: create route53 record for frontend
-    amazon.aws.route53:
+   - name: create route53 record for frontend
+     amazon.aws.route53:
       state: present
       zone: "{{ domain_name }}"
       record: "{{ domain_name }}" # daws86s.fun
@@ -60,5 +58,5 @@
       ttl: 1
       value: "{{ item.instances[0].public_ip_address }}"
       overwrite: true
-    when: item.item == "frontend"
-    loop: "{{ ec2_output.results }}"
+     when: item.item == "frontend"
+     loop: "{{ ec2_output.results }}"
