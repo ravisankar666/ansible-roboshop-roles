@@ -2,7 +2,7 @@
   hosts: local
   connection: local
   vars:
-   ami_id: "ami-09c813fb71547fc4f"
+   ami_id: "ami-0220d79f3f480ecf5"
    sg_id:   "sg-00c2d6548a23412ff" # replace security group id
    zone_id: "Z0043313JVXOCUVVVC7F"  # replace with hosted_zone id
    domain_name: "daws86.fun"
