@@ -7,7 +7,7 @@
    zone_id: "Z0043313JVXOCUVVVC7F"  # replace with hosted_zone id
    domain_name: "daws86.fun"
    instances:
-    # - mongodb
+     - mongodb
    # we can pass instances through command line using -e
     
 
